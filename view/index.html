@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dream Vacation</title>
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/988fea0cbb.js" crossorigin="anonymous"></script>
+    <!-- Embedded CSS -->
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: url('https://www.pixelstalk.net/wp-content/uploads/2016/08/Travel-Images-For-Desktop.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Navigation Element */
+        #navelement {
+            background-color: rgba(0, 0, 0, 0.982);
+            height: 10vh;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #navelement div {
+            margin-left: 40%;
+        }
+
+        .logo {
+            height: 60%;
+            width: 8%;
+            border-radius: 50%;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+        /* Mobile Menu Button */
+        .checkbtn {
+            color: white;
+            display: none;
+            font-size: x-large;
+            cursor: pointer;
+        }
+
+        .checkbtn:hover {
+            background-color: transparent;
+        }
+
+        /* Navigation Links */
+        .menu {
+            padding: 10px;
+            color: white;
+            font-size: 26px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu:hover {
+            color: #ddd;
+        }
+
+        /* Layout Content */
+        #layout {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .Heading {
+            font-size: 46px;
+            font-weight: 400;
+            margin-top: 250px;
+        }
+
+        .paragraph {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .button {
+            background-color: transparent;
+            color: white;
+            font-size: 18px;
+            height: 6vh;
+            width: 12vw;
+            border-radius: 10px;
+            border: 1px solid white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Responsive Styles */
+        @media screen and (min-width: 300px) and (max-width: 1000px) {
+            #navelement div {
+                margin-left: 15%;  
+            }
+            #nav-item a {
+                display: none;
+            }
+            .checkbtn {
+                display: block;
+            }
+            .button {
+                width: 18vw;
+            }
+        }
+
+        @media screen and (max-width: 750px) {
+            .button {
+                width: 30vw;
+            }
+            .Heading {
+                font-size: 28px;
+                margin-top: 200px;
+            }
+        }
+
+        /* Additional Styles for Smooth Menu Transition */
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.982);
+                position: absolute;
+                top: 10vh;
+                left: 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu {
+                font-size: 20px;
+                padding: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="Home">
+        <div class="intro">
+            <!-- Navigation Header -->
+            <header id="header">
+                <nav id="navelement">
+                    <img src="data:image/png;base64,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" alt="Logo" class="logo">
+                    <div id="nav-item" class="nav-links">
+                        <a href="index.html" class="menu">Home</a>
+                        <a href="location.html" class="menu">Locations</a>
+                        <a href="services.html" class="menu">Services</a>
+                        <a href="register.html" class="menu">Register</a>
+                        <a href="login.html" class="menu">Login</a>
+                    </div>
+                    <div class="checkbtn" onclick="toggleMenu()">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Main Content -->
+            <div id="layout">
+                <h1 class="Heading">Your Dream Vacation Awaits</h1>
+                <p class="paragraph">Explore India's best destinations with ease</p>
+                <button class="button" onclick="bookTickets()">Book Tickets</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        // Function to toggle the mobile menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Function to handle "Book Tickets" button click
+        function bookTickets() {
+            // Redirect to AbhiBus
+            window.location.href = "https://www.abhibus.com";
+        }
+
+        // Function to show the selected page section (if applicable)
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            // Close the menu on mobile after selection
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('active');
+        }
+
+        // Simple alert for search functionality (if a form exists)
+        // Uncomment and modify if you have a search form
+        /*
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Search functionality coming soon!");
+        });
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip</title>
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/988fea0cbb.js" crossorigin="anonymous"></script>
+    <!-- Embedded CSS -->
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f8f5f5;
+        }
+
+        /* Navigation Element */
+        #navelement {
+            background-color: rgba(0, 0, 0, 0.982);
+            height: 10vh;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #navelement div {
+            margin-left: 40%;
+        }
+
+        .logo {
+            height: 60%;
+            width: 8%;
+            border-radius: 50%;
+            background-size: cover;
+            object-fit: cover;
+        }
+
+        /* Mobile Menu Button */
+        .checkbtn {
+            color: white;
+            display: none;
+            font-size: x-large;
+            cursor: pointer;
+        }
+
+        .checkbtn:hover {
+            background-color: transparent;
+        }
+
+        /* Navigation Links */
+        .menu {
+            padding: 10px;
+            color: white;
+            font-size: 26px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu:hover {
+            color: #ddd;
+        }
+
+        /* Layout Content */
+        /* Hero Section */
+        .hero {
+            background: url('https://images.hdqwalls.com/wallpapers/travel-hd.jpg') no-repeat center center/cover;
+            height: 80vh;
+            color: black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10vh; /* To prevent content from hiding behind the fixed nav */
+        }
+
+        .plandates {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #input, #date, #button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #input, #date {
+            width: 200px;
+        }
+
+        #button {
+            background-color: rgba(0, 0, 0, 0.747);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #button:hover {
+            background-color: black;
+        }
+
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            color: rgba(0, 0, 0, 0.838);
+            border-radius: 10px;
+            margin: 20px;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .step:hover {
+            color: #2e2e2e;
+            transform: scale(1.05);
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .step p {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Responsive Styles */
+        @media screen and (min-width: 300px) and (max-width: 1000px) {
+            #navelement div {
+                margin-left: 15%;  
+            }
+            #nav-item a {
+                display: none;
+            }
+            .checkbtn {
+                display: block;
+            }
+            #button {
+                width: 180px;
+            }
+        }
+
+        @media screen and (max-width: 750px) {
+            #button {
+                width: 30vw;
+            }
+            .plandates {
+                font-size: 28px;
+                margin-top: 20px;
+            }
+            #input, #date {
+                width: 150px;
+            }
+            form {
+                flex-direction: column;
+            }
+        }
+
+        /* Additional Styles for Smooth Menu Transition */
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.982);
+                position: absolute;
+                top: 10vh;
+                left: 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu {
+                font-size: 20px;
+                padding: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navelement">
+        <img src="data:image/png;base64,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" alt="Logo" class="logo">
+        <div id="nav-item" class="nav-links">
+            <a href="index.html" class="menu">Home</a>
+            <a href="location.html" class="menu">Locations</a>
+            <a href="services.html" class="menu">Services</a>
+            <a href="register.html" class="menu">Register</a>
+            <a href="login.html" class="menu">Login</a>
+        </div>
+        <div class="checkbtn" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1 class="plandates">Plan Your Trip in 3 Easy Steps</h1>
+        <form id="searchForm">
+            <input id="input" type="text" placeholder="Enter destination" required>
+            <input id="date" type="date" required>
+            <button id="button" type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="steps-grid">
+        <a class="step" href="find.html">
+            <h3>Step 1</h3>
+            <p>Select your destination and travel dates.</p>
+        </a>
+        <a class="step" href="find.html">
+            <h3>Step 2</h3>
+            <p>Pick your preferences (adventures, food, culture).</p>
+        </a>
+        <a class="step" href="find.html">
+            <h3>Step 3</h3>
+            <p>Get your personalized itinerary in seconds.</p>
+        </a>
+    </div>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        // Function to toggle the mobile menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Function to handle form submission
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const destination = document.getElementById('input').value;
+            const travelDate = document.getElementById('date').value;
+            alert(`Searching trips to ${destination} on ${travelDate}.\nSearch functionality coming soon!`);
+            // You can redirect to the results page or perform AJAX requests here
+        }
+        );
+    </script>
+</body>
+</html>

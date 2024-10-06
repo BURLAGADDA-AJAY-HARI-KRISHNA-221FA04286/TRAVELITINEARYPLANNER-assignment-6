@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wiki Search</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+      .main-container {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .wiki-search-header {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #d5cdcd;
+        padding: 30px 20px;
+        margin-bottom: 40px;
+      }
+
+      .wiki-logo {
+        height: 150px;
+        width: auto;
+        margin-bottom: 30px;
+      }
+
+      .search-input {
+        font-size: 18px;
+        border: 1px solid #d5cdcd;
+        border-radius: 3px;
+        padding: 10px;
+      }
+
+      .search-results {
+        width: 100%;
+        padding-left: 20px;
+      }
+
+      .result-item {
+        margin-bottom: 20px;
+      }
+
+      .result-title {
+        font-size: 22px;
+        color: #000;
+      }
+
+      .link-description {
+        color: #444444;
+        font-size: 15px;
+      }
+
+      .result-url {
+        color: #006621;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="wiki-search-header text-center">
+        <img class="wiki-logo" src="data:image/png;base64,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" alt="Wiki Logo" />
+        <br />
+        <input
+          placeholder="Type a keyword and press Enter to search"
+          type="search"
+          class="search-input w-100"
+          id="searchInput"
+        />
+      </div>
+      <div class="d-none" id="spinner">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <script>
+      let searchInputEl = document.getElementById("searchInput");
+      let searchResultsEl = document.getElementById("searchResults");
+      let spinnerEl = document.getElementById("spinner");
+
+      function createAndAppendSearchResult(result) {
+        let { link, title, description } = result;
+
+        let resultItemEl = document.createElement("div");
+        resultItemEl.classList.add("result-item");
+
+        let titleEl = document.createElement("a");
+        titleEl.href = link;
+        titleEl.target = "_blank";
+        titleEl.textContent = title;
+        titleEl.classList.add("result-title");
+        resultItemEl.appendChild(titleEl);
+
+        let titleBreakEl = document.createElement("br");
+        resultItemEl.appendChild(titleBreakEl);
+
+        let urlEl = document.createElement("a");
+        urlEl.classList.add("result-url");
+        urlEl.href = link;
+        urlEl.target = "_blank";
+        urlEl.textContent = link;
+        resultItemEl.appendChild(urlEl);
+
+        let linkBreakEl = document.createElement("br");
+        resultItemEl.appendChild(linkBreakEl);
+
+        let descriptionEl = document.createElement("p");
+        descriptionEl.classList.add("link-description");
+        descriptionEl.textContent = description;
+        resultItemEl.appendChild(descriptionEl);
+
+        searchResultsEl.appendChild(resultItemEl);
+      }
+
+      function displayResults(searchResults) {
+        spinnerEl.classList.add("d-none");
+
+        for (let result of searchResults) {
+          createAndAppendSearchResult(result);
+        }
+      }
+
+      function searchWikipedia(event) {
+        if (event.key === "Enter") {
+          spinnerEl.classList.remove("d-none");
+          searchResultsEl.textContent = "";
+
+          let searchInput = searchInputEl.value;
+          let url = "https://apis.ccbp.in/wiki-search?search=" + searchInput;
+          let options = {
+            method: "GET",
+          };
+
+          fetch(url, options)
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (jsonData) {
+              let { search_results } = jsonData;
+              displayResults(search_results);
+            });
+        }
+      }
+
+      searchInputEl.addEventListener("keydown", searchWikipedia);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="first.css">
+    <style>
+      *
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+}
+.intro {
+    background: url('https://www.pixelstalk.net/wp-content/uploads/2016/08/Travel-Images-For-Desktop.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    
+}
+#layout
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+}
+#navelement
+{
+    background-color: rgba(0, 0, 0, 0.982);
+    height:10vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+ #navelement div{
+    margin-left: 40%;
+} 
+.logo{
+    height: 60%;
+    width: 8%;
+    border-radius: 50%;
+    background-size: cover;
+
+}
+.checkbtn{
+    color: white;
+    display: none;
+    font-size: x-large;
+}
+.checkbtn:hover{
+    background-color:transparent;
+}
+
+.menu
+{
+    padding: 10px;
+    color: white;
+    font-size: 26px;
+    text-decoration: none;
+}
+
+.Heading{
+    color: white;
+    font-size: 46px;
+    font-weight: 400px;
+    margin-top: 250px;
+}
+.paragraph{
+    color: white;
+    font-size: 18px;
+}
+.button{
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    height: 6vh;
+    width: 12vw;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+@media screen and (min-width:300px) and (max-width:1000px)
+{
+    #navelement div
+    {
+      margin-left: 15%;  
+    }
+    #nav-item a
+    {
+        display: none;
+    }
+    .checkbtn{
+        display: block;
+    }
+    .button{
+        height: 6vh;
+        width: 18vw;
+    }
+}
+@media screen and (max-width:750px)
+{
+    .button{
+        height: 6vh;
+        width: 30vw;
+    }
+    .Heading{
+        font-size: 28px;
+    }
+}
+/* 3rd page */
+.serivescontainer,.serivescontainer1{
+    background-color:rgb(248, 245, 245);
+    background-size: cover;
+    height: 100%;
+    padding: 30px;
+    /* display: flex;
+    flex-direction: row; */
+}
+.childserivescontainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    width: 80%;
+    gap: 50px;
+}
+
+#grid_1
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.section1{
+    background: #f9f9f9;
+    /* padding: 20px; */
+    width: 25%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+.section1:hover {
+    color: #2e2e2e;
+    transform: scale(1.05);
+}
+
+.locations{
+    padding: 20px;
+}
+.section1 img{
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+@media screen and (min-width:300px) and (max-width:1000px) {
+    /* .childserivescontainer
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    } */
+    #grid_1
+    {
+        /* display: flex; */
+        flex-direction: column;
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+    .section1{
+        width: 50%;
+    }
+    
+}
+.serivesplaces{
+    font-size: 32px;
+    font-weight: bold;
+    margin: 24px;
+    padding-top: 50px;
+}
+.centering{
+    display: flex;
+    justify-content: center;
+}
+.locations h1{
+    font-size: 24px;
+    color: black;
+    font-weight: 500px;
+}
+.locations p{
+    font-size: 14px;
+    color: black;
+}
+
+.childserivescontainer1{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.section2{
+    background: #f9f9f9;
+    padding: 20px;
+    width: 25%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 20px;
+    border-radius: 10px;
+}
+.section2 div img{
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}
+.section3{
+    background: #f9f9f9;
+    /* padding: 20px; */
+    width: 25%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 20px;
+    border-radius: 10px;
+}
+.section3 div img{
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <section id="Home">
+        <nav class="" id="navelement">
+            <img src="data:image/png;base64,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" class="logo">
+            <div id="nav-item">
+                <a href="index.html"  class="menu">Home</a>
+                <a href="location.html" class="menu">Locations</a>
+                <a href="services" class="menu">Services</a>
+                <a href="register.html" class="menu">Register</a>
+                <a href="login.html" class="menu">Login</a>
+            </div>
+            <div class="checkbtn">
+                <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+            </div>
+        </nav>
+    </section>
+    <div class="serivescontainer">
+        <h1 class="serivesplaces">Top cities in India</h1>
+        <div class="centering">
+            <div class="childserivescontainer">
+                <div id="grid_1">
+                    <div class="section1">
+                        <div>
+                            <img src="https://cdn.britannica.com/37/189837-050-F0AF383E/New-Delhi-India-War-Memorial-arch-Sir.jpg" alt="Image 1">
+                            <div class="locations">
+                                <h1>Delhi</h1>
+                                <p>12786 Hotels in New Delhi and NCR, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div>
+                            <img src="https://images.thequint.com/thequint/2017-12/05e8e3a6-795a-4479-beb1-37ff0b3afaf3/2.jpg?auto=format%2Ccompress" alt="Image 2">
+                            <div class="locations">
+                                <h1>Mumbai</h1>
+                                <p>22957 Hotels in Mumbai, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div>
+                            <img src="https://www.tripsavvy.com/thmb/8eoduV4QoEzXdx3siv4rS8prXLg=/2121x1414/filters:fill(auto,1)/GettyImages-606353257-5be1ac59c9e77c00519e8ae0.jpg" alt="Image 3">
+                            <div class="locations">
+                                <h1>Goa</h1>
+                                <p>9254 Hotels in Goa, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div>
+                            <img src="https://th.bing.com/th/id/OIP.UQm3HqE8Ka5nN07MK6M6pAHaE8?w=720&h=481&rs=1&pid=ImgDetMain" alt="Image 4">
+                            <div class="locations">
+                                <h1>Bangalore</h1>
+                                <p>5372 Hotels in Bangalore, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="grid_1">
+                    <div class="section1">
+                        <div>
+                            <img src="https://th.bing.com/th/id/OIP.eM82AZoOIzffBrYtWIjWaQHaE8?rs=1&pid=ImgDetMain" alt="Image 5">
+                            <div class="locations">
+                                <h1>Chennai</h1>
+                                <p>6245 Hotels in Chennai, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div>
+                            <img src="https://cdn.budgetyourtrip.com/images/photos/headerphotos/large/india_hyderabad.jpg" alt="Image 6">
+                            <div class="locations">
+                                <h1>Hyderabad</h1>
+                                <p>3752 Hotels in Hyderabad, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div>
+                            <img src="https://costoffliving.com/wp-content/uploads/2019/07/hawa-mahal.jpg" alt="Image 7">
+                            <div class="locations">
+                                <h1>Jaipur</h1>
+                                <p>825 Hotels in Jaipur, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section1">
+                        <div>
+                            <img src="https://punetourism.co.in/images/places-to-visit/headers/shaniwar-wada-pune-tourism-entry-fee-timings-holidays-reviews-header.jpg" alt="Image 8">
+                            <div class="locations">
+                                <h1>Pune</h1>
+                                <p>6243 Hotels in Pune, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
